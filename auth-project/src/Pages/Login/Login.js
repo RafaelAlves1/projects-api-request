@@ -10,26 +10,26 @@ const Login = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  // async function handleLogin() {
-  //   if (email !== '' && password !== '') {
-  //     await signInWithEmailAndPassword(auth, email, password)
-  //       .then(() => {
-  //         toast.success('Logado com sucesso');
-  //         setEmail('');
-  //         setPassword('');
-  //       })
-  //       .catch((err) => {
-  //         if (err.code === 'auth/invalid-email') {
-  //           toast.error('Email inválido');
-  //         }
-  //         if (err.code === 'auth/wrong-password') {
-  //           toast.error('Senha inválida');
-  //         }
-  //       });
-  //   } else {
-  //     toast.error('Preencha todos os campos');
-  //   }
-  // }
+  async function handleLogin() {
+    if (email !== '' && password !== '') {
+      await signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          toast.success('Logado com sucesso');
+          setEmail('');
+          setPassword('');
+        })
+        .catch((err) => {
+          if (err.code === 'auth/invalid-email') {
+            toast.error('Email inválido');
+          }
+          if (err.code === 'auth/wrong-password') {
+            toast.error('Senha inválida');
+          }
+        });
+    } else {
+      toast.error('Preencha todos os campos');
+    }
+  }
 
   return (
     <Container
@@ -61,7 +61,7 @@ const Login = () => {
         />
         <Button
           variant="contained"
-          // onClick={handleLogin}
+          onClick={handleLogin}
           sx={{
             width: '100%',
             margin: '10px 0',

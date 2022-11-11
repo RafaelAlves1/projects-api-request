@@ -11,31 +11,31 @@ const Register = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // async function handleCadastro(e) {
-  //   e.preventDefault();
-  //   if (email !== '' && password !== '') {
-  //     await createUserWithEmailAndPassword(auth, email, password)
-  //       .then(() => {
-  //         toast.success('Cadastrado com sucesso');
-  //         setEmail('');
-  //         setPassword('');
-  //         navigate('/');
-  //       })
-  //       .catch((err) => {
-  //         if (err.code === 'auth/email-already-in-use') {
-  //           toast.error('Email ja cadastrado');
-  //         }
+  async function handleCadastro(e) {
+    e.preventDefault();
+    if (email !== '' && password !== '') {
+      await createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          toast.success('Cadastrado com sucesso');
+          setEmail('');
+          setPassword('');
+          navigate('/');
+        })
+        .catch((err) => {
+          if (err.code === 'auth/email-already-in-use') {
+            toast.error('Email ja cadastrado');
+          }
 
-  //         if (err.code === 'auth/weak-password') {
-  //           toast.error('Senha fraca');
-  //         }
-  //       });
-  //   } else {
-  //     toast.error('Preencha todos os campos');
-  //   }
-  // }
+          if (err.code === 'auth/weak-password') {
+            toast.error('Senha fraca');
+          }
+        });
+    } else {
+      toast.error('Preencha todos os campos');
+    }
+  }
   return (
     <Container
       maxWidth="md"
@@ -66,7 +66,7 @@ const Register = () => {
         />
         <Button
           variant="contained"
-          // onClick={handleCadastro}
+          onClick={handleCadastro}
           sx={{
             width: '100%',
             margin: '10px 0',
