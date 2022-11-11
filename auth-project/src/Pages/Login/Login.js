@@ -25,6 +25,15 @@ const Login = () => {
           if (err.code === 'auth/wrong-password') {
             toast.error('Senha inválida');
           }
+          if (err.code === 'auth/user-not-found') {
+            toast.error('Usuario não existe');
+          }
+
+          if (err.code === 'auth/user-disabled') {
+            toast.error(
+              'Conta desativada, entre em contato com o Administrador',
+            );
+          }
         });
     } else {
       toast.error('Preencha todos os campos');
