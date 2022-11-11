@@ -5,12 +5,15 @@ import App from './App';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CssBaseline } from '@mui/material';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
-    <ToastContainer />
-    <CssBaseline />
+    <BrowserRouter>
+      <App />
+      <ToastContainer />
+      <CssBaseline />
+    </BrowserRouter>
   </React.StrictMode>,
 );
